@@ -63,6 +63,8 @@ public class Manager : MonoBehaviour
 
     public AudioManager audioManager;
 
+    public GameObject MessageParent;
+
     /*
      * This part is the Randomizer Text Messages.
      */
@@ -223,7 +225,7 @@ public class Manager : MonoBehaviour
                 Message.GetComponentInChildren<Text>().text = scamMessages[Random.Range(0, scamMessages.Length - 1)];
                 Message.GetComponentInChildren<MessageScript>().isScam = true;
                 Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
-                Message.transform.SetParent(Canvas.transform);
+                Message.transform.SetParent(MessageParent.transform);
                 Message.transform.DOScale(1.0f, 0.6f);
                 Message.transform.DOLocalMoveX(163.5f, 0.3f);
             }
@@ -235,7 +237,7 @@ public class Manager : MonoBehaviour
                     GameObject Message = Instantiate(rightMessage_Small, new Vector3(rightMessageOrigin.transform.position.x, rightMessageOrigin.transform.position.y + Random.Range(-500.0f, 500.0f), rightMessageOrigin.transform.position.z), Quaternion.identity);
                     Message.GetComponentInChildren<Text>().text = shortMessages[Random.Range(0, shortMessages.Length - 1)];
                     Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
-                    Message.transform.SetParent(Canvas.transform);
+                    Message.transform.SetParent(MessageParent.transform);
                     Message.transform.DOScale(1.0f, 0.6f);
                     Message.transform.DOLocalMoveX(280, 0.3f);
                 }
@@ -244,7 +246,7 @@ public class Manager : MonoBehaviour
                     GameObject Message = Instantiate(rightMessage_Medium, new Vector3(rightMessageOrigin.transform.position.x, rightMessageOrigin.transform.position.y + Random.Range(-500.0f, 500.0f), rightMessageOrigin.transform.position.z), Quaternion.identity);
                     Message.GetComponentInChildren<Text>().text = mediumMessages[Random.Range(0, mediumMessages.Length - 1)];
                     Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
-                    Message.transform.SetParent(Canvas.transform);
+                    Message.transform.SetParent(MessageParent.transform);
                     Message.transform.DOScale(1.0f, 0.6f);
                     Message.transform.DOLocalMoveX(163.5f, 0.3f);
                 }

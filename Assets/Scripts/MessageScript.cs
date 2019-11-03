@@ -58,6 +58,7 @@ public class MessageScript : MonoBehaviour
             {
                 GameOverScreen.transform.DOLocalMoveX(12.811f, 1);
             }
+            AudioManager.instance.playScamTone();
             print("GAMEOVER");
         }
 

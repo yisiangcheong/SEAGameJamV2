@@ -8,6 +8,23 @@ public class AudioManager : MonoBehaviour
     public AudioClip messageOnTapTone;
     public AudioClip messageOnSpawnTone;
     public AudioClip postTone;
+    public AudioClip scamTone;
+
+    public static AudioManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
 
     public void playPostTone()
     {
@@ -22,5 +39,10 @@ public class AudioManager : MonoBehaviour
     public void playMessageOnSpawnTone()
     {
         myAudioSourceSFX.PlayOneShot(messageOnSpawnTone, 2.0f);
+    }
+
+    public void playScamTone()
+    {
+        myAudioSourceSFX.PlayOneShot(scamTone, 2.0f);
     }
 }
