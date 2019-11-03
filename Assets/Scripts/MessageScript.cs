@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public enum PostingType {
     Scam,
@@ -34,6 +35,13 @@ public class MessageScript : MonoBehaviour
     {
         if(isScam == false)
         {
+            GameObject reply = Instantiate(Manager.instance.replyGO, new Vector3(Input.mousePosition.x, Input.mousePosition.y), Quaternion.identity);
+            reply.GetComponent<TextMeshProUGUI>().text = Manager.instance.replies[Random.Range(0, Manager.instance.replies.Length - 1)];
+            reply.transform.SetParent(Manager.instance.Canvas.transform);
+            reply.GetComponent<ReplyMessageSCript>().OnSpawn();
+            reply.transform.DOScale(1.0f, 0.0f);
+            reply.transform.DOLocalMoveY(reply.transform.position.y + 7, 1.0f);
+
             CancelInvoke("decreaseTimer");
             Destroy(gameObject);
         }
@@ -48,7 +56,7 @@ public class MessageScript : MonoBehaviour
             }
             else
             {
-                GameOverScreen.transform.DOLocalMoveX(12.811, 1);
+                GameOverScreen.transform.DOLocalMoveX(12.811f, 1);
             }
             print("GAMEOVER");
         }
@@ -115,6 +123,10 @@ public class MessageScript : MonoBehaviour
         messageTimer = length;
         InvokeRepeating("decreaseTimer", 0, Time.deltaTime);
         Invoke("Stop", length);
+        
+        StartCoroutine(Wait(1));
+        
+        
     }
 
     void decreaseTimer()
@@ -125,6 +137,7 @@ public class MessageScript : MonoBehaviour
     void Stop()
     {
         CancelInvoke("decreaseTimer");
+        CancelInvoke("Punch");
         if(Manager.instance.followersCounter - followersToDecrease >= 0)
         {
             Manager.instance.followersCounter -= followersToDecrease;
@@ -137,10 +150,15 @@ public class MessageScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void Punch()
+    {
+        gameObject.transform.DOPunchPosition(new Vector3(0.0f, 10.0f, 0.0f), 0.5f, 0, 0, false);
+    }
 
     IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
+        InvokeRepeating("Punch", 0, 1.0f);
     }
 }
-}
+

@@ -8,16 +8,17 @@ using DG.Tweening;
 public class Manager : MonoBehaviour
 {
     /*
-     * postsCounter = ?
-     * followersCounter = ?
-     * followerGainTimer = ?
-     * batteryTimer = ?
-     * waitTime = ?
-     * getFollowerPercent = ?
-     * increasePercentPerPost = ?
-     * Every N Posts Plus One Follower = ?
-     * maxPercent = ?
-     * Battery Run Out Time = ?
+     * postsCounter = Int Counter for Posts
+     * followersCounter = Int Counter for Followers
+     * 
+     * followerGainTimer = Timer for waitTime
+     * batteryTimer = Timer for battery
+     * waitTime = Gain followers every N interval
+     * getFollowerPercent = Percentage for getting followers every WaitTime
+     * increasePercentPerPost = Increase getFollowerPercent by N for every Post()
+     * Every N Posts Plus One Follower = Increase the number of possible follower gains by 1 for every N Posts
+     * maxPercent = Maximum percentage for getFollowerPercent
+     * Battery Run Out Time = Time it takes for battery to run out
      */
     int postsCounter = 0;
     public int followersCounter = 0;
@@ -55,6 +56,9 @@ public class Manager : MonoBehaviour
     public GameObject rightMessageOrigin;
     public GameObject leftMessageOrigin;
 
+    //Reply GameObject
+    public GameObject replyGO;
+
     public Image blackPanel;
 
     public AudioManager audioManager;
@@ -66,10 +70,11 @@ public class Manager : MonoBehaviour
     public string[] shortMessages;
     public string[] mediumMessages;
     public string[] scamMessages;
+    public string[] replies;
 
     //MESSAGE PERCENTAGES
     float chanceToSpawnSmall = 0.70f; //70%
-    float chanceToGetMessage = 0.30f;
+    float chanceToGetMessage = 0.40f;
     float chanceToBeScam = 0.0f;
 
     public static Manager instance;
