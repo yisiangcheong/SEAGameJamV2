@@ -1403,8 +1403,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.000024796, y: 81.5}
-  m_SizeDelta: {x: 800, y: 163}
+  m_AnchoredPosition: {x: 0.000020429, y: 133.5}
+  m_SizeDelta: {x: 800, y: 267}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692426802
 MonoBehaviour:
@@ -1454,6 +1454,7 @@ GameObject:
   - component: {fileID: 723960262}
   - component: {fileID: 723960261}
   - component: {fileID: 723960260}
+  - component: {fileID: 723960263}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1525,6 +1526,92 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723960263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723960259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05d864294ebee047b53838ac217f1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSwipe: 0
+--- !u!1001 &771923253
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 121276, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_Name
+      value: SwipeController
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.251061
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3203106
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7107387
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 433210, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486114, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_bActiveVisualFeedback
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486114, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_bMobileTouchBased
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486114, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: SwipeDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 12069954, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cb25f9d4f2cb41318cecfce473382a8, type: 3}
 --- !u!1 &810668302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,8 +2129,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0000023842}
-  m_SizeDelta: {x: 383.2, y: 143.6}
+  m_AnchoredPosition: {x: 0.000011444, y: 0.000005722}
+  m_SizeDelta: {x: 580.3, y: 209.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1078813083
 MonoBehaviour:
@@ -3428,6 +3515,11 @@ PrefabInstance:
       propertyPath: scamMessages.Array.data[5]
       value: BUY 1 FREE 2 PROMOTION
       objectReference: {fileID: 0}
+    - target: {fileID: 8719960852117306327, guid: d0aeb5bea3dff24459cea11b86ab666b,
+        type: 3}
+      propertyPath: SwipeCatch_Manager
+      value: 
+      objectReference: {fileID: 723960263}
     - target: {fileID: 8719960852117306326, guid: d0aeb5bea3dff24459cea11b86ab666b,
         type: 3}
       propertyPath: m_LocalPosition.x

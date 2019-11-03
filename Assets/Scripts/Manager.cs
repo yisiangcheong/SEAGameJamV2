@@ -79,6 +79,8 @@ public class Manager : MonoBehaviour
 
     float shakeAmount = 0.0f;
 
+    public Swipe_Catch SwipeCatch_Manager;
+
     private void Awake()
     {
         if (instance == null)

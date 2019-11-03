@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum PostingType {
-    Positive,
-    Negative,
     Scam,
     Default
 }
@@ -21,6 +20,14 @@ public class MessageScript : MonoBehaviour
     int followersToDecrease = 20;
     public bool isScam = false;
     public PostingType messageType = PostingType.Default;
+    public Swipe_Catch swipe_Catch;
+    public GameObject GameOverScreen;
+
+    private void Start()
+    {
+        swipe_Catch = GameObject.Find("Main Camera").GetComponent<Swipe_Catch>();
+        GameOverScreen = GameObject.Find("GameOverScreen");
+    }
 
 
     public void DestroySelf()
@@ -32,6 +39,17 @@ public class MessageScript : MonoBehaviour
         }
         else
         {
+            if (swipe_Catch.isSwipe)
+            {
+                transform.DOLocalMoveX(-200, 1);
+                StartCoroutine(Wait(1));
+                transform.DOKill();
+                Destroy(gameObject);
+            }
+            else
+            {
+                GameOverScreen.transform.DOLocalMoveX(12.811, 1);
+            }
             print("GAMEOVER");
         }
 
@@ -58,20 +76,36 @@ public class MessageScript : MonoBehaviour
         {
             case PostingType.Default:
                 print("This is just Default Messages");
+                transform.DOKill();
                 Destroy(gameObject);
                 break;
+                /*
             case PostingType.Negative:
                 print("This is just Negative Messages");
+                transform.DOKill();
                 Destroy(gameObject);
                 break;
             case PostingType.Positive:
                 print("This is just Positive Messages");
+                transform.DOKill();
                 Destroy(gameObject);
                 break;
+                */
             case PostingType.Scam:
                 print("This is just Scam Messages");
+                if (swipe_Catch.isSwipe)
+                {
+
+                }
+                else
+                {
+
+                }
+                transform.DOKill();
                 Destroy(gameObject);
-                Application.LoadLevel(Application.loadedLevel);
+
+                //Restart Level
+               // Application.LoadLevel(Application.loadedLevel);
                 break;
         }
     }
@@ -102,4 +136,11 @@ public class MessageScript : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+}
 }
