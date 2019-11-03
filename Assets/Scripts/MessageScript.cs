@@ -24,12 +24,14 @@ public class MessageScript : MonoBehaviour
     public Swipe_Catch swipe_Catch;
     public GameObject GameOverScreen;
     public Manager GameManager;
+    public TextMeshProUGUI Value;
 
     private void Start()
     {
         swipe_Catch = GameObject.Find("Main Camera").GetComponent<Swipe_Catch>();
         GameOverScreen = GameObject.Find("GameOverScreen");
         GameManager = GameObject.Find("GameManager").GetComponent<Manager>();
+        Value = GameObject.Find("Value").GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -58,7 +60,8 @@ public class MessageScript : MonoBehaviour
             }
             else
             {
-                GameOverScreen.transform.DOLocalMoveX(12.811f, 1);
+                Value.text = "" + GameManager.followersCounter;
+                GameOverScreen.transform.DOLocalMoveX(-4f, 1);
                 GameManager.StopSpawningMessages();
             }
             AudioManager.instance.playScamTone();
