@@ -23,11 +23,13 @@ public class MessageScript : MonoBehaviour
     public PostingType messageType = PostingType.Default;
     public Swipe_Catch swipe_Catch;
     public GameObject GameOverScreen;
+    public Manager GameManager;
 
     private void Start()
     {
         swipe_Catch = GameObject.Find("Main Camera").GetComponent<Swipe_Catch>();
         GameOverScreen = GameObject.Find("GameOverScreen");
+        GameManager = GameObject.Find("GameManager").GetComponent<Manager>();
     }
 
 
@@ -57,6 +59,7 @@ public class MessageScript : MonoBehaviour
             else
             {
                 GameOverScreen.transform.DOLocalMoveX(12.811f, 1);
+                GameManager.StopSpawningMessages();
             }
             AudioManager.instance.playScamTone();
             print("GAMEOVER");

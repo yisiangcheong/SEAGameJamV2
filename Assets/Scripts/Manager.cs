@@ -30,6 +30,7 @@ public class Manager : MonoBehaviour
     public int EveryNPostsPlusOneFollower;
     public float maxPercent;
     public float BatteryRunOutTime;
+    public bool stopSpawning = false;
     
     /*
      * PostsCounterTMPro
@@ -42,6 +43,7 @@ public class Manager : MonoBehaviour
     public TextMeshProUGUI FollowersCounterTMPro;
     public GameObject ShakeGO;
     public GameObject Canvas;
+    public GameObject Canvas_Message;
 
     /*
      * Origin Prefabs
@@ -118,6 +120,11 @@ public class Manager : MonoBehaviour
         }
     }
 
+    public void StopSpawningMessages()
+    {
+        stopSpawning = true;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -135,7 +142,10 @@ public class Manager : MonoBehaviour
                 {
                     if (Random.value <= chanceToGetMessage)
                     {
-                        SpawnMessage();
+                        if (!stopSpawning)
+                        {
+                            SpawnMessage();
+                        } 
                     }
                 }
             }
@@ -244,6 +254,7 @@ public class Manager : MonoBehaviour
                 else
                 {
                     GameObject Message = Instantiate(rightMessage_Medium, new Vector3(rightMessageOrigin.transform.position.x, rightMessageOrigin.transform.position.y + Random.Range(-500.0f, 500.0f), rightMessageOrigin.transform.position.z), Quaternion.identity);
+                    Message.transform.SetParent(MessageParent.transform);
                     Message.GetComponentInChildren<Text>().text = mediumMessages[Random.Range(0, mediumMessages.Length - 1)];
                     Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
                     Message.transform.SetParent(MessageParent.transform);
@@ -264,7 +275,7 @@ public class Manager : MonoBehaviour
                 Message.GetComponentInChildren<Text>().text = scamMessages[Random.Range(0, scamMessages.Length - 1)];
                 Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
                 Message.GetComponentInChildren<MessageScript>().isScam = true;
-                Message.transform.SetParent(Canvas.transform);
+                Message.transform.SetParent(MessageParent.transform);
                 Message.transform.DOScale(1.0f, 0.6f);
                 Message.transform.DOLocalMoveX(-163.5f, 0.3f);
             }
@@ -275,7 +286,7 @@ public class Manager : MonoBehaviour
                     GameObject Message = Instantiate(leftMessage_Small, new Vector3(leftMessageOrigin.transform.position.x, leftMessageOrigin.transform.position.y + Random.Range(-500.0f, 500.0f), leftMessageOrigin.transform.position.z), Quaternion.identity);
                     Message.GetComponentInChildren<Text>().text = shortMessages[Random.Range(0, shortMessages.Length - 1)];
                     Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
-                    Message.transform.SetParent(Canvas.transform);
+                    Message.transform.SetParent(MessageParent.transform);
                     Message.transform.DOScale(1.0f, 0.6f);
                     Message.transform.DOLocalMoveX(-280, 0.3f);
                 }
@@ -284,7 +295,7 @@ public class Manager : MonoBehaviour
                     GameObject Message = Instantiate(leftMessage_Medium, new Vector3(leftMessageOrigin.transform.position.x, leftMessageOrigin.transform.position.y + Random.Range(-500.0f, 500.0f), leftMessageOrigin.transform.position.z), Quaternion.identity);
                     Message.GetComponentInChildren<Text>().text = mediumMessages[Random.Range(0, mediumMessages.Length - 1)];
                     Message.GetComponentInChildren<MessageScript>().startCountdown(5.0f);
-                    Message.transform.SetParent(Canvas.transform);
+                    Message.transform.SetParent(MessageParent.transform);
                     Message.transform.DOScale(1.0f, 0.6f);
                     Message.transform.DOLocalMoveX(-163.5f, 0.3f);
                 }
