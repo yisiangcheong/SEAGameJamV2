@@ -78,7 +78,8 @@ public class Manager : MonoBehaviour
 
     //MESSAGE PERCENTAGES
     float chanceToSpawnSmall = 0.70f; //70%
-    float chanceToGetMessage = 0.40f;
+    float chanceToGetMessage = 0.5f;
+    float minChanceToGetMessage = 0.2f;
     float chanceToBeScam = 0.0f;
 
     public static Manager instance;
@@ -145,6 +146,10 @@ public class Manager : MonoBehaviour
                         if (!stopSpawning)
                         {
                             SpawnMessage();
+                            if(chanceToGetMessage - 0.015f > minChanceToGetMessage)
+                            {
+                                chanceToGetMessage -= 0.015f;
+                            }
                         } 
                     }
                 }
@@ -154,7 +159,7 @@ public class Manager : MonoBehaviour
 
         print(chanceToBeScam);
 
-        /*
+        
         if(shake == false)
         {
             batteryTimer += Time.deltaTime;
@@ -172,6 +177,7 @@ public class Manager : MonoBehaviour
                 batteryTimer = 0.0f;
                 Shake(10.0f, 60.0f);
                 blackPanel.raycastTarget = true;
+                StopSpawningMessages();
             }
         }
 
@@ -192,10 +198,11 @@ public class Manager : MonoBehaviour
                     blackPanel.color = blackPanelTemp;
                     blackPanel.raycastTarget = false;
                     StopShake();
+                    stopSpawning = false;
                 }
             }
         }
-        */
+        
     }
 
     void Shake(float amt, float length)
@@ -261,7 +268,7 @@ public class Manager : MonoBehaviour
                     Message.transform.DOScale(1.0f, 0.6f);
                     Message.transform.DOLocalMoveX(163.5f, 0.3f);
                 }
-                if (chanceToBeScam + 0.01f < 0.3f)
+                if (chanceToBeScam + 0.01f < 0.2f)
                 {
                     chanceToBeScam += 0.01f;
                 }
@@ -299,7 +306,7 @@ public class Manager : MonoBehaviour
                     Message.transform.DOScale(1.0f, 0.6f);
                     Message.transform.DOLocalMoveX(-163.5f, 0.3f);
                 }
-                if (chanceToBeScam + 0.01f < 0.3f)
+                if (chanceToBeScam + 0.01f < 0.2f)
                 {
                     chanceToBeScam += 0.01f;
                 }

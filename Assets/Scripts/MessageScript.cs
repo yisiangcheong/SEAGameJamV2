@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 
 public enum PostingType {
     Scam,
@@ -25,6 +26,8 @@ public class MessageScript : MonoBehaviour
     public GameObject GameOverScreen;
     public Manager GameManager;
     public TextMeshProUGUI Value;
+
+    Color tempColor;
 
     private void Start()
     {
@@ -130,10 +133,19 @@ public class MessageScript : MonoBehaviour
         messageTimer = length;
         InvokeRepeating("decreaseTimer", 0, Time.deltaTime);
         Invoke("Stop", length);
-        
+        InvokeRepeating("toRed", 0, 0.2f);
+
         StartCoroutine(Wait(1));
         
         
+    }
+
+    void toRed()
+    {
+        tempColor = GetComponent<Image>().color;
+        tempColor.b = tempColor.b * 0.9f;
+        tempColor.g = tempColor.g * 0.9f;
+        GetComponent<Image>().color = tempColor;
     }
 
     void decreaseTimer()
@@ -145,14 +157,17 @@ public class MessageScript : MonoBehaviour
     {
         CancelInvoke("decreaseTimer");
         CancelInvoke("Punch");
-        if(Manager.instance.followersCounter - followersToDecrease >= 0)
+        if(isScam == false)
         {
-            Manager.instance.followersCounter -= followersToDecrease;
-        }
-        else
-        {
-            Manager.instance.followersCounter = 0;
-            Manager.instance.FollowersCounterTMPro.text = Manager.instance.followersCounter.ToString();
+            if (Manager.instance.followersCounter - followersToDecrease >= 0)
+            {
+                Manager.instance.followersCounter -= followersToDecrease;
+            }
+            else
+            {
+                Manager.instance.followersCounter = 0;
+                Manager.instance.FollowersCounterTMPro.text = Manager.instance.followersCounter.ToString();
+            }
         }
         Destroy(gameObject);
     }
