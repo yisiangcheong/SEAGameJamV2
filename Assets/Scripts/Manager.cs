@@ -7,6 +7,18 @@ using DG.Tweening;
 
 public class Manager : MonoBehaviour
 {
+    /*
+     * postsCounter = ?
+     * followersCounter = ?
+     * followerGainTimer = ?
+     * batteryTimer = ?
+     * waitTime = ?
+     * getFollowerPercent = ?
+     * increasePercentPerPost = ?
+     * Every N Posts Plus One Follower = ?
+     * maxPercent = ?
+     * Battery Run Out Time = ?
+     */
     int postsCounter = 0;
     public int followersCounter = 0;
     float followerGainTimer = 0.0f;
@@ -17,11 +29,24 @@ public class Manager : MonoBehaviour
     public int EveryNPostsPlusOneFollower;
     public float maxPercent;
     public float BatteryRunOutTime;
+    
+    /*
+     * PostsCounterTMPro
+     * FollowerCounterTMPro
+     * ShakeGO
+     * Canvas
+     */
 
     public TextMeshProUGUI PostsCounterTMPro;
     public TextMeshProUGUI FollowersCounterTMPro;
     public GameObject ShakeGO;
     public GameObject Canvas;
+
+    /*
+     * Origin Prefabs
+     * blackPanel: ?
+     * audioManager : ?
+     */
 
     public GameObject leftMessage_Small;
     public GameObject rightMessage_Small;
@@ -33,6 +58,10 @@ public class Manager : MonoBehaviour
     public Image blackPanel;
 
     public AudioManager audioManager;
+
+    /*
+     * This part is the Randomizer Text Messages.
+     */
 
     public string[] shortMessages;
     public string[] mediumMessages;
